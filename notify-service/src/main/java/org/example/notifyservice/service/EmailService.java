@@ -20,6 +20,16 @@ public class EmailService {
     }
 
     public void sendBookingCreatedEmail(String recipient) {
-        throw new UnsupportedOperationException();
+        if (!StringUtils.hasText(recipient)) {
+            return;
+        }
+        SimpleMailMessage message = new SimpleMailMessage();
+        if (StringUtils.hasText(from)) {
+            message.setFrom(from);
+        }
+        message.setTo(recipient);
+        message.setSubject("Xác nhận đặt vé xem phim");
+        message.setText("Đặt vé thành công. Yêu cầu đặt vé xem phim của bạn đã được hệ thống tiếp nhận");
+        mailSender.send(message);
     }
 }

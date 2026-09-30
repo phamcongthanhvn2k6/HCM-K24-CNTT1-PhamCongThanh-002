@@ -16,7 +16,10 @@ public class BookingCreatedConsumer {
         this.emailService = emailService;
     }
 
+    @KafkaListener(topics = "${notification.kafka.booking-created-topic:booking-created}")
     public void consume(String email) {
-        throw new UnsupportedOperationException();
+        if (StringUtils.hasText(email)) {
+            emailService.sendBookingCreatedEmail(email);
+        }
     }
 }

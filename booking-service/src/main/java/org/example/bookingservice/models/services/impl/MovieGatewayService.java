@@ -15,8 +15,24 @@ public class MovieGatewayService {
 
     private final MovieClient movieClient;
 
+    @CircuitBreaker(name = "movieService", fallbackMethod = "getMovieByIdFallback")
     public MovieResponse getMovieById(Long movieId) {
-        throw new UnsupportedOperationException();
+        try {
+            return movieClient.getMovieById(movieId);
+        } catch (FeignException.NotFound e) {
+            throw new MovieNotFoundException(movieId);
+        } catch (FeignException e) {
+            throw new MovieServiceException("Movie service error: " + e.getMessage(), e);
+        }
     }
 
+    public MovieResponse getMovieByIdFallback(Long movieId, Throwable t) {
+        if (t instanceof MovieNotFoundException mnfe) {
+            throw mnfe;
+        }
+        if (t instanceof FeignException.NotFound) {
+            throw new MovieNotFoundException(movieId);
+        }
+        throw new MovieServiceException("Movie service is unavailable", t);
+    }
 }
