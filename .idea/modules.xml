@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/booking-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/booking-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/de_thi_final_microservice.iml" filepath="$PROJECT_DIR$/.idea/de_thi_final_microservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/movie-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/movie-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/notify-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/notify-service.main.iml" />
     </modules>
   </component>
 </project>
